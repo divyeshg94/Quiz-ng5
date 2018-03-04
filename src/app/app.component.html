@@ -1,0 +1,60 @@
+<title>Question For the Day - LeaF</title>
+<script  src='3rdParty/jquery/jquery-2.1.4.min.js'></script>
+<script  src='3rdParty/bootstrap/js/popper.min.js'></script>
+<script  src='3rdParty/bootstrap/js/bootstrap.min.js'></script>
+<script  src='3rdParty/iscroll-master/build/iscroll.js'></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <img class="d-none d-md-block d-print-none" id="logo" src="assets/LeaF.png">  -->
+<h3>Welcome !!</h3>
+<!-- <div class='container-fluid' > -->
+<div class="Container color-dark">
+  <div class="col">
+    <p>Info For the day</p>
+  </div>
+</div>
+<div class='container color-light'>
+  <div  class="col">
+    <p>{{info}}</p>
+  </div>
+</div><br><br>
+
+<div class='container color-dark'>
+  <div class='col'>
+    <p> Today's Question: </p>
+  </div>
+  <div class='col'>
+      <p>Previous Question: </p>
+  </div>
+</div>
+
+<div class='container color-light'>
+    <div class='col'>
+      <p> Please find the question for the Day</p><br>
+      <span>{{ QFD }}</span>
+      <form>
+          <input type="submit" class="btn" value="Submit" (click)="submit()">
+      </form>
+      <p> {{alreadyAnsweredMsg}} </p>
+      <p> {{successMsg}} </p>
+      
+      <div class='starOfMonthMain'>
+          <div class='starDiv' id='starIcon'></div>
+          <div class='headerParagraph starDiv' style='display: inline-block;'>Star of the Month is</div>
+          <div id='starOfMonthDiv'>
+            <ol class="list-group" id='starOfMonthList'></ol>
+          </div>
+      </div>
+
+    </div>
+    <div class='col'>
+        <p>The correct Answer for the previous Question</p>
+        <p></p>
+        <p id='prevQFD'></p>
+        <p id='explanation'></p>
+        <p  class='headerParagraph'>Correct answer was given by </p>
+        <div id='answerByDiv'><ol class="list-group" id='prevAnswerBy'></ol></div>
+        <p>Total no. of people participated last Day :
+            <span  class='headerParagraph' id="totalNoOfParticipants"></span>
+        </p>
+    </div>
+</div>
