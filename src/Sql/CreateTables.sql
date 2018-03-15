@@ -1,5 +1,5 @@
 create table Associates(
-	Id Int,
+	ID int NOT NULL IDENTITY,
 	FirstName NVARCHAR(64),
 	LastName NVARCHAR(64),
 	EmailId NVARCHAR(100),
@@ -7,10 +7,21 @@ create table Associates(
 )
 
 Create table Quiz(
-	Id int,
+	ID int NOT NULL IDENTITY,
 	QuestionNo int,
 	QDate Date,
 	Associate NVARCHAR(100),
 	IsAnserRight bit,
 	Answer NVARCHAR(255)
+)
+
+Create Table Questions(
+	ID int NOT NULL IDENTITY,
+	Question NVARCHAR(MAX),
+	Options NVARCHAR(MAX),
+	Answer NVARCHAR(MAX),
+	QuestionDate Date,
+	IsLastDayOfMonth bit,
+	Explanation NVARCHAR(MAX),
+	Info NVARCHAR(MAX)
 )

@@ -29,9 +29,14 @@
 
 <div class='container color-light'>
     <div class='col'>
+      <span>{{ generalMsg }}</span>
       <p> Please find the question for the Day</p><br>
-      <span>{{ QFD }}</span>
+      <span>{{ questionData.question }}</span>
       <form>
+        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option1" ng-show="questionData.option1"/> {{ questionData.option1 }}<br />
+        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option2" ng-show="questionData.option2"/> {{ questionData.option2 }}<br />
+        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option3"ng-show="questionData.option3"/> {{ questionData.option3 }}<br />
+        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option4" ng-show="questionData.option4"/> {{ questionData.option4 }}<br />
           <input type="submit" class="btn" value="Submit" (click)="submit()">
       </form>
       <p> {{alreadyAnsweredMsg}} </p>

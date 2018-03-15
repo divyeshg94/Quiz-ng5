@@ -22,7 +22,7 @@
 		{
             "questionNumber": "3",
             "date": "2017-12-30",
-			"question": "What is /are the number of operand /operands needed to unary operator logical not(!)?",
+			      "question": "What is /are the number of operand /operands needed to unary operator logical not(!)?",
             "option1": "One",
             "option2": "Two",
             "option3": "Three",
@@ -112,7 +112,7 @@
             "option4": "All the above are valid data types.",
             "option5": "All the above are invalid data types.",
             "sessionInfo": "'unsigned long long int' is a valid data type.",
-            "explanation": "In C, ìfloatî is single precision floating type. ìdoubleî is double precision floating type. ìlong doubleîis often more precise than double precision floating type.  So the maximum floating type is ìlong doubleî. Thereís nothing called ìlong long doubleî. If someone wants to use bigger range than ìlong doubleî, we need to define our own data type i.e. user defined data type. Besides, Type Specifiers ìsignedî and ìunsignedî arenít applicable for floating types (float, double, long double). Basically, floating types are always signed only."
+            "explanation": "In C, ‚Äúfloat‚Äù is single precision floating type. ‚Äúdouble‚Äù is double precision floating type. ‚Äúlong double‚Äùis often more precise than double precision floating type.  So the maximum floating type is ‚Äúlong double‚Äù. There‚Äôs nothing called ‚Äúlong long double‚Äù. If someone wants to use bigger range than ‚Äúlong double‚Äù, we need to define our own data type i.e. user defined data type. Besides, Type Specifiers ‚Äúsigned‚Äù and ‚Äúunsigned‚Äù aren‚Äôt applicable for floating types (float, double, long double). Basically, floating types are always signed only."
         },
         {
             "questionNumber": "12",
@@ -123,16 +123,16 @@
             "option3": "sizeof(int); sizeof(int*); sizeof(int**); would compile successfully but the size of each would be different and would be decided at run time.",
             "option4": "sizeof(int*); and sizeof(int**); would result in compile error but sizeof(int); would compile and result in size as 4.",
             "sessionInfo": "sizeof(int); sizeof(int*); sizeof(int**); would compile successfully and size of each would be same i.e. 4",
-            "explanation": "Size of all pointer types is same. And whether it is a ëpointer to charí or ëpointer to intí or ëpointer to pointer to intí, the size always remain same."
+            "explanation": "Size of all pointer types is same. And whether it is a ‚Äòpointer to char‚Äô or ‚Äòpointer to int‚Äô or ‚Äòpointer to pointer to int‚Äô, the size always remain same."
         },
         {
             "questionNumber": "13",
             "date": "2018-01-05",
             "question": "Pick the best statement for the below program snippet:</br>struct {int a[2];} </br>arr[] = {1,2};",
-            "option1": "No compile error and itíll create array arr of 2 elements. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[1].a[0] would be 2.",
-            "option2": "No compile error and itíll create array arr of 2 elements. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2. The second element arr[1] would be ZERO i.e. arr[1].a[0] and arr[1].a[1] would be 0.",
-            "option3": "No compile error and itíll create array arr of 1 element. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2.",
-            "sessionInfo": "No compile error and itíll create array arr of 1 element. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2."
+            "option1": "No compile error and it‚Äôll create array arr of 2 elements. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[1].a[0] would be 2.",
+            "option2": "No compile error and it‚Äôll create array arr of 2 elements. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2. The second element arr[1] would be ZERO i.e. arr[1].a[0] and arr[1].a[1] would be 0.",
+            "option3": "No compile error and it‚Äôll create array arr of 1 element. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2.",
+            "sessionInfo": "No compile error and it‚Äôll create array arr of 1 element. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2."
         },
         {
             "questionNumber": "14",
