@@ -10,7 +10,7 @@ var router = express.Router();
 var server = {};
 var qDate;
 var apiSimulatorPort = 3100;
-var repo = 'D:/Quiz-ng5/src';
+var repo = 'E:/TFS/Quiz-ng5/Quiz-ng5/src';
 var apiSimulatorHostName = 'LeaF';
 var os = require('os');
 var sql = require("mssql");
@@ -30,9 +30,9 @@ server.listen(apiSimulatorPort, function () {
 
 var config = {
   server: 'DIVYESH',
-  database: 'DailyQuiz',
+  database: 'Quiz',
   user: 'sa',
-  password: 'pass@word1',
+  password: 'Dhakshu020415',
   port: 1433
 };
 
@@ -162,11 +162,11 @@ server.get('/question', function (req, res) {
         var currentDay = year + '-' + month + '-' + day;
         console.log('currentDay');
         console.log(currentDay);
-        var response = _.find(obj, {'date': currentDay});
-        //var response = _.find(obj, function (item) {
-        //  console.log(item);
-        //  return item.date == currentDay;
-        //});
+        // var response = _.find(obj, {'date': currentDay});
+        var response = _.find(obj, function (item) {
+          console.log(item);
+          return item.date == currentDay;
+        });
         console.log('response')
         console.log(response.questionNumber)
         console.log('response.questionNumber')
@@ -197,8 +197,8 @@ server.get('/question', function (req, res) {
           console.log(prevAnswers);
           request.query("SELECT count(associates) as count from LeafQuiz where qDate = '" + prevResponse.date + "'", function (err, arr) {
             console.log("arr");
-            console.log(arr[0]);
-            res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: arr[0].count })
+           // console.log(arr[0]); arr[0].count {{for now}}
+            res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: 1 })
 
           })
           //sql.close();

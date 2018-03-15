@@ -1,7 +1,7 @@
 [
         {
             "questionNumber": "1",
-            "date": "2018-03-14",
+            "date": "2018-3-14",
             "question": "Which, in general, is the least required skill of a good tester?",
             "option1": "Being diplomatic",
             "option2": "Able to write software",
@@ -11,7 +11,7 @@
         },
 		{
             "questionNumber": "2",
-            "date": "2017-12-19",
+            "date": "2018-3-15",
             "question": "Which of the following is NOT part of configuration management?",
             "option1": "auditing conformance to ISO 9000",
             "option2": "status accounting of configuration items",
