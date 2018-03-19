@@ -11,7 +11,7 @@ Create table Quiz(
 	QuestionNo int,
 	QDate Date,
 	Associate NVARCHAR(100),
-	IsAnserRight bit,
+	IsAnswerRight bit,
 	Answer NVARCHAR(255)
 )
 

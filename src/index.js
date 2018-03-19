@@ -49,31 +49,31 @@ server.put('/submitAnswer', function (req, res) {
   var year = currentDate.getFullYear()
   qDate = year + '-' + month + '-' + day;
   console.log(qDate);
-
-  request.query("select * from Quiz where qDate = '" + qDate + "' and associates ='" + req.body.user + "'", function (err, arr) {
+  console.log(req.body.user);
+  console.log("select * from Quiz where qDate = '" + qDate + "' and associate = '" + req.body.user + "'");
+  request.query("select * from Quiz where qDate = '" + qDate + "' and associate = '" + req.body.user + "'", function (err, arr) {
     if (err) {
       console.log(err);
       return;
     }
-
-    if (arr.length != 0) {
+    console.log(arr.recordset.length);
+    if (arr.recordset.length != 0) {
       isAlreadyAnswered = true;
     }
 
     else {
-      console.log('req.body.user');
-      console.log(req.body);
+      console.log("Script 2");
       isAlreadyAnswered = false;
       request.query("INSERT INTO [dbo].[Quiz]([QuestionNo],[QDate],[Associate],[IsAnswerRight],[Answer]) VALUES ('" + req.body.questionNo + "','" + qDate + "','" + req.body.user + "','" + req.body.correct + "','" + req.body.answer + "')", function (err, recordset) {
         if (err) console.log(err)
-        res.send(recordset);
+        isAlreadyAnswered = false;
+        res.send({ 'isAlreadyAnswered': isAlreadyAnswered });
         //sql.close();
       });
     }
-    res.json({ 'isAlreadyAnswered': isAlreadyAnswered })
+    //res.json({ 'isAlreadyAnswered': isAlreadyAnswered })
     //sql.close();
   });
-
 });
 
 /* server.get('/user', function(req, res) {
@@ -169,8 +169,6 @@ server.get('/question', function (req, res) {
           console.log(item);
           return item.date == currentDay;
         });
-        console.log('response')
-        console.log(response.questionNumber)
         console.log('response.questionNumber')
         console.log(response.questionNumber)
         if (response.questionNumber > 1) {
@@ -187,25 +185,29 @@ server.get('/question', function (req, res) {
         if (err)
           console.log(err);
 
-        var prevAnswers = [];
         var request = new sql.Request();
         console.log('prevResponse1');
         console.log(prevResponse);
-        res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: 1 })
-        //request.query("select FirstName, LastName from associates where EmailId in (SELECT associates from LeafQuiz where qDate = '" + prevResponse.date + "' and isAnswerRight = 'true' )", function (err, arr) {
-        //  if (err) console.log(err);
-        //  prevAnswers = [];
-        //  prevAnswers = arr;
-        //  console.log('prevAnswers');
-        //  console.log(prevAnswers);
-        //  request.query("SELECT count(associates) as count from LeafQuiz where qDate = '" + prevResponse.date + "'", function (err, arr) {
-        //    console.log("arr");
-        //    console.log(arr[0]); arr[0].count 
-        //    res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: arr[0].count })
-
-        //  })
-          //sql.close();
-        //});
+        request.query("select FirstName, LastName from associates where EmailId in (SELECT associate from Quiz where qDate = '" + prevResponse.date + "' and isAnswerRight = 'true' )", function (err, arr) {
+          if (err) console.log(err);
+          count = 0;
+          prevAnswers = [];
+          prevAnswers = arr;
+          console.log('prevAnswers');
+          console.log(prevAnswers);
+          console.log(prevResponse.date);
+          request.query("SELECT count(associate) as count from Quiz where qDate = '" + prevResponse.date + "'", function (err, arr1) {
+            if (err) console.log(err);
+            console.log(arr1);
+            if (arr1) {
+              console.log("arr");
+              console.log(arr1[0]);
+              count = arr1[0].count
+            }
+            res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: count })
+          })
+          sql.close();
+        });
       }
     });
 })

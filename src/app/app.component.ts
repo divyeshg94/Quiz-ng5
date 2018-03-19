@@ -22,7 +22,8 @@ type Question = {
       Option2: string,
       Option3: string,
       Option4: string,
-      SessionInfo: string
+      SessionInfo: string,
+      Explanation: string
     }
 }
 
@@ -46,12 +47,10 @@ type SubmitResponse = {
 })
 export class AppComponent implements OnInit{
   title = 'app';
-  alreadyAnsweredMsg: string = '';
-  successMsg: string = '';
   info: string = '';
   questionData: any;
   previousQuestionData: any;
-  count: number;
+  prevQuestionParticipationcount: number;
   prevAnswerData: any;
   selectedOption: string;
   isAnswerCorrect: boolean;
@@ -61,8 +60,6 @@ export class AppComponent implements OnInit{
   constructor(private http: HttpClient){}
 
   ngOnInit(){
-      this.alreadyAnsweredMsg = 'You have already answered today`s question!!';
-      this.successMsg = 'Your Answer is successfully submitted to the server';
       this.getQuestions();
   }
 
@@ -70,10 +67,9 @@ export class AppComponent implements OnInit{
     this.http.get('/api/question')
       .subscribe((response: Question) => {
         this.questionData = response.data;
-        console.log(this.questionData);
+        console.log(response);
         this.previousQuestionData = response.prevData;
-        console.log(this.previousQuestionData);
-        this.count = response.count;
+        this.prevQuestionParticipationcount = response.count;
         this.prevAnswerData = response.PrevAnswerData;
       },
       (err: any) => console.log(err),
@@ -90,22 +86,25 @@ export class AppComponent implements OnInit{
     {
       this.isAnswerCorrect = true;
     }
+
     var request = {
-      
-    
+      user: 'divyeshg@cloudassert.com',
+      questionNo: 1,
+      correct: this.isAnswerCorrect,
+      answer: this.questionData.sessionInfo
     }
-    this.http.get('/api/submitAnswer')
+
+    this.http.put('/api/submitAnswer', request)
       .subscribe((response: SubmitResponse) => {
         this.isAlreadyAnswered = response.isAlreadyAnswered;
         if (this.isAlreadyAnswered) {
-          this.alreadyAnsweredMsg = 'You have already answered today`s question :('
+          this.generalMsg = 'You have already answered today`s question :('
         }
         else {
-          this.alreadyAnsweredMsg = 'Answer Submitted Successfully :)'
+          this.generalMsg = 'Answer Submitted Successfully :)'
         }
       },
       (err: any) => console.log(err),
       () => console.log('Answer Submitted Success!!'));
-
   }
 }

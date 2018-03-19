@@ -1,8 +1,8 @@
 <title>Question For the Day - LeaF</title>
-<script  src='3rdParty/jquery/jquery-2.1.4.min.js'></script>
-<script  src='3rdParty/bootstrap/js/popper.min.js'></script>
-<script  src='3rdParty/bootstrap/js/bootstrap.min.js'></script>
-<script  src='3rdParty/iscroll-master/build/iscroll.js'></script>
+<script src='3rdParty/jquery/jquery-2.1.4.min.js'></script>
+<script src='3rdParty/bootstrap/js/popper.min.js'></script>
+<script src='3rdParty/bootstrap/js/bootstrap.min.js'></script>
+<script src='3rdParty/iscroll-master/build/iscroll.js'></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <img class="d-none d-md-block d-print-none" id="logo" src="assets/LeaF.png">  -->
 <h3>Welcome !!</h3>
@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class='container color-light'>
-  <div  class="col">
+  <div class="col">
     <p>{{info}}</p>
   </div>
 </div><br><br>
@@ -23,43 +23,75 @@
     <p> Today's Question: </p>
   </div>
   <div class='col'>
-      <p>Previous Question: </p>
+    <p>Previous Question: </p>
   </div>
 </div>
 
 <div class='container color-light'>
-    <div class='col'>
-      <span>{{ generalMsg }}</span>
-      <p> Please find the question for the Day</p><br>
-      <span>{{ questionData.question }}</span>
-      <form>
-        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option1" ng-show="questionData.option1"/> {{ questionData.option1 }}<br />
-        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option2" ng-show="questionData.option2"/> {{ questionData.option2 }}<br />
-        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option3"ng-show="questionData.option3"/> {{ questionData.option3 }}<br />
-        <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option4" ng-show="questionData.option4"/> {{ questionData.option4 }}<br />
-          <input type="submit" class="btn" value="Submit" (click)="submit()">
-      </form>
-      <p> {{alreadyAnsweredMsg}} </p>
-      <p> {{successMsg}} </p>
-      
-      <div class='starOfMonthMain'>
-          <div class='starDiv' id='starIcon'></div>
-          <div class='headerParagraph starDiv' style='display: inline-block;'>Star of the Month is</div>
-          <div id='starOfMonthDiv'>
-            <ol class="list-group" id='starOfMonthList'></ol>
-          </div>
+  <div class='col'>
+    <span style="font-size:18px;color:red">{{ generalMsg }}</span>
+    <p> Please find the question for the Day</p>
+    <span>{{ questionData.question }}</span>
+    <form>
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option1" [hidden]="!questionData.option1" /> {{ questionData.option1 }}<br />
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option2" [hidden]="!questionData.option1" /> {{ questionData.option2 }}<br />
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option3" [hidden]="!questionData.option1" /> {{ questionData.option3 }}<br />
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option4" [hidden]="!questionData.option1" /> {{ questionData.option4 }}<br />
+      <div style="padding:10px;">
+        <input type="submit" class="btn" value="Submit" (click)="submit()">
       </div>
+    </form>
 
-    </div>
-    <div class='col'>
-        <p>The correct Answer for the previous Question</p>
-        <p></p>
-        <p id='prevQFD'></p>
-        <p id='explanation'></p>
-        <p  class='headerParagraph'>Correct answer was given by </p>
-        <div id='answerByDiv'><ol class="list-group" id='prevAnswerBy'></ol></div>
-        <p>Total no. of people participated last Day :
-            <span  class='headerParagraph' id="totalNoOfParticipants"></span>
-        </p>
-    </div>
+    <!--<div class='starOfMonthMain' >
+        <div class='starDiv' id='starIcon'></div>
+        <div class='headerParagraph starDiv' style='display: inline-block;'>Star of the Month is</div>
+        <div id='starOfMonthDiv'>
+          <ol class="list-group" id='starOfMonthList'></ol>
+        </div>
+    </div>-->
+  </div>
+
+  <div class='col'>
+    <p>Previous Day's Question</p>
+    <span>{{ previousQuestionData.question }}</span>
+    <form>
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option1" [hidden]="!previousQuestionData.option1" disabled /> {{ previousQuestionData.option1 }}<br />
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option2" [hidden]="!previousQuestionData.option2" disabled /> {{ previousQuestionData.option2 }}<br />
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option3" [hidden]="!previousQuestionData.option3" disabled /> {{ previousQuestionData.option3 }}<br />
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option4" [hidden]="!previousQuestionData.option4" disabled /> {{ previousQuestionData.option4 }}<br />
+    </form>
+    <p [hidden]="!previousQuestionData.Explanation">Explanation</p>
+    <p>{{previousQuestionData.Explanation}}</p>
+
+  </div>
+</div><br><br>
+
+<div class="Container color-dark">
+  <div class="col">
+    <p>Previous Question Participation</p>
+  </div>
 </div>
+<div class='container color-light'>
+  <div class="col">
+    <p class='headerParagraph'>Correct answer was given by </p>
+    <ul>
+      <li *ngFor="let participant of prevAnswerData">
+        {{participant.FirstName}} {{participant.LastName}}
+      </li>
+    </ul>
+    <p>
+      Total no. of people participated last Day :
+      <span>{{prevQuestionParticipationcount}}</span>
+    </p>
+  </div>
+</div><br><br>
+
+
+<style>
+  p{
+    padding: 5px;
+  }
+  form{
+    padding-top:5px;
+  }
+</style>
