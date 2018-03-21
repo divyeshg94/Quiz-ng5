@@ -2,29 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 type Question = {
-    count: any,
-    data: {
-      date: Date,
-      question: string,
-      option1: string,
-      option2: string,
-      option3: string,
-      option4: string,
-      sessionInfo: string
-    },
-    PrevAnswerData: {
-
-    },
-    prevData: {
-      date: Date,
-      TQuestion: string,
-      Option1: string,
-      Option2: string,
-      Option3: string,
-      Option4: string,
-      SessionInfo: string,
-      Explanation: string
-    }
+  count: any,
+  data: {
+    date: Date,
+    question: string,
+    option1: string,
+    option2: string,
+    option3: string,
+    option4: string,
+    sessionInfo: string,
+    info: string
+  },
+  PrevAnswerData: {
+    FirstName: string,
+    LastName: string
+  },
+  prevData: {
+    date: Date,
+    TQuestion: string,
+    Option1: string,
+    Option2: string,
+    Option3: string,
+    Option4: string,
+    SessionInfo: string,
+    Explanation: string
+  }
 }
 
 type SubmitAnswer = {
@@ -45,9 +47,8 @@ type SubmitResponse = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'app';
-  info: string = '';
   questionData: any;
   previousQuestionData: any;
   prevQuestionParticipationcount: number;
@@ -57,10 +58,10 @@ export class AppComponent implements OnInit{
   isAlreadyAnswered: boolean;
   generalMsg: string;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  ngOnInit(){
-      this.getQuestions();
+  ngOnInit() {
+    this.getQuestions();
   }
 
   getQuestions() {
@@ -82,8 +83,7 @@ export class AppComponent implements OnInit{
       return;
     }
     this.isAnswerCorrect = false;
-    if (this.selectedOption == this.questionData.sessionInfo)
-    {
+    if (this.selectedOption == this.questionData.sessionInfo) {
       this.isAnswerCorrect = true;
     }
 

@@ -31,14 +31,15 @@
         },
         {
             "questionNumber": "4",
-            "date": "2017-12-31",
+            "date": "2018-3-21",
             "question": "Code Coverage is used as a measure of what?",
             "option1": "Defects",
             "option2": "Trends analysis",
             "option3": "Test Effectiveness",
             "option4": "Time Spent Testing",
             "sessionInfo": "Test Effectiveness",
-            "isLastDay": true
+            "isLastDay": true,
+			"info": "Every drop of water makes a mighty ocean!!" 
         },
         {
             "questionNumber": "5",

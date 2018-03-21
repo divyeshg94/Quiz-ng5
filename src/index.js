@@ -192,21 +192,22 @@ server.get('/question', function (req, res) {
           if (err) console.log(err);
           count = 0;
           prevAnswers = [];
-          prevAnswers = arr;
+          prevAnswers = arr.recordsets[0];
           console.log('prevAnswers');
           console.log(prevAnswers);
           console.log(prevResponse.date);
+          var request = new sql.Request();
           request.query("SELECT count(associate) as count from Quiz where qDate = '" + prevResponse.date + "'", function (err, arr1) {
             if (err) console.log(err);
             console.log(arr1);
             if (arr1) {
-              console.log("arr");
-              console.log(arr1[0]);
-              count = arr1[0].count
+              console.log(arr1);
+              console.log(arr1.recordset[0].count);
+              count = arr1.recordset[0].count;
             }
-            res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: count })
+            res.json({ data: response, prevData: prevResponse, prevAnswerData: prevAnswers, count: count})
           })
-          sql.close();
+          //sql.close();
         });
       }
     });
