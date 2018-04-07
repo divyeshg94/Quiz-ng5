@@ -10,7 +10,7 @@ var router = express.Router();
 var server = {};
 var qDate;
 var apiSimulatorPort = 3100;
-var repo = 'D:/Quiz-ng5/src';
+var repo = 'E:/TFS/Quiz-ng5/Quiz-ng5/src';
 var apiSimulatorHostName = 'LeaF';
 var os = require('os');
 var sql = require("mssql");
@@ -30,9 +30,9 @@ server.listen(apiSimulatorPort, function () {
 
 var config = {
   server: 'DIVYESH',
-  database: 'DailyQuiz',
+  database: 'Quiz',
   user: 'sa',
-  password: 'pass@word1',
+  password: 'Dhakshu020415',
   port: 1433
 };
 
@@ -59,6 +59,7 @@ server.put('/submitAnswer', function (req, res) {
     console.log(arr.recordset.length);
     if (arr.recordset.length != 0) {
       isAlreadyAnswered = true;
+      res.send({ 'isAlreadyAnswered': isAlreadyAnswered });
     }
 
     else {
@@ -192,10 +193,12 @@ server.get('/question', function (req, res) {
           if (err) console.log(err);
           count = 0;
           prevAnswers = [];
-          prevAnswers = arr.recordsets[0];
-          console.log('prevAnswers');
-          console.log(prevAnswers);
-          console.log(prevResponse.date);
+          if (arr && arr.recordsets) {
+            prevAnswers = arr.recordsets[0];
+            console.log('prevAnswers');
+            console.log(prevAnswers);
+            console.log(prevResponse.date);
+          }
           var request = new sql.Request();
           request.query("SELECT count(associate) as count from Quiz where qDate = '" + prevResponse.date + "'", function (err, arr1) {
             if (err) console.log(err);

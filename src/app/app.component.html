@@ -1,11 +1,11 @@
-<title>Question For the Day - LeaF</title>
 <script src='3rdParty/jquery/jquery-2.1.4.min.js'></script>
 <script src='3rdParty/bootstrap/js/popper.min.js'></script>
 <script src='3rdParty/bootstrap/js/bootstrap.min.js'></script>
 <script src='3rdParty/iscroll-master/build/iscroll.js'></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <img class="d-none d-md-block d-print-none" id="logo" src="assets/LeaF.png">  -->
-<h3>Welcome !!</h3>
+<h3 [hidden]="!user">Welcome {{user}}!!</h3>
+<h3 [hidden]="user">Welcome!! <span style="color:red;">Sorry you are not authenticated. Please use the link got in ur Email</span>></h3>
 <!-- <div class='container-fluid' > -->
 <div class="Container color-dark">
   <div class="col">
@@ -14,7 +14,8 @@
 </div>
 <div class='container color-light'>
   <div class="col">
-    <p>{{questionData.info}}</p>
+    <p [hidden]="!questionData.info">{{questionData.info}}</p>
+    <p [hidden]="questionData.info" style="color:red;">No info for the day. Please provide your input for upcoming days!!</p>
   </div>
 </div><br><br>
 
@@ -37,7 +38,7 @@
       <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option2" [hidden]="!questionData.option1" /> {{ questionData.option2 }}<br />
       <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option3" [hidden]="!questionData.option1" /> {{ questionData.option3 }}<br />
       <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option4" [hidden]="!questionData.option1" /> {{ questionData.option4 }}<br />
-      <div style="padding:10px;">
+      <div style="padding:20px;" [hidden]='!user'>
         <input type="submit" class="btn" value="Submit" (click)="submit()">
       </div>
     </form>
@@ -73,7 +74,7 @@
 </div>
 <div class='container color-light'>
   <div class="col">
-    <p class='headerParagraph'>Correct answer was given by </p>
+    <p class='headerParagraph'>Correct answer was given by <span [hidden]="prevAnswerData" style="color:red">None :(</span></p>
     <ul>
       <li *ngFor="let participant of prevAnswerData">
         {{participant.FirstName}} {{participant.LastName}}
@@ -85,7 +86,6 @@
     </p>
   </div>
 </div><br><br>
-
 
 <style>
   p{

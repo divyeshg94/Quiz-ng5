@@ -4,6 +4,7 @@ create table Associates(
 	LastName NVARCHAR(64),
 	EmailId NVARCHAR(100),
 	DOB Date,
+	IsActive bit
 )
 
 Create table Quiz(

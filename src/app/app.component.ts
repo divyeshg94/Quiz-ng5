@@ -38,6 +38,10 @@ type SubmitAnswer = {
   }
 }
 
+type UserInfo = {
+
+}
+
 type SubmitResponse = {
   isAlreadyAnswered: boolean
 }
@@ -49,6 +53,8 @@ type SubmitResponse = {
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  user: string;
+  userInfo: any;
   questionData: any;
   previousQuestionData: any;
   prevQuestionParticipationcount: number;
@@ -61,7 +67,27 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.user = this.getParameterByName('user', window.location.href);
+    if(this.user){
+      console.log('/api/getUserName/'+this.user);
+      this.http.get('/api/getUserName/'+this.user)
+        .subscribe((response: UserInfo) => {
+            this.userInfo = response;
+        },
+        (err: any) => console.log(err),
+        () => console.log("User Data Retrieved!!"));
+    }
     this.getQuestions();
+  }
+
+  getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
   getQuestions() {
@@ -88,15 +114,17 @@ export class AppComponent implements OnInit {
     }
 
     var request = {
-      user: 'divyeshg@cloudassert.com',
+      user: this.user,
       questionNo: 1,
       correct: this.isAnswerCorrect,
-      answer: this.questionData.sessionInfo
+      answer: this.selectedOption
     }
 
     this.http.put('/api/submitAnswer', request)
       .subscribe((response: SubmitResponse) => {
         this.isAlreadyAnswered = response.isAlreadyAnswered;
+        console.log("From Angular");
+        console.log(this.isAlreadyAnswered);
         if (this.isAlreadyAnswered) {
           this.generalMsg = 'You have already answered today`s question :('
         }

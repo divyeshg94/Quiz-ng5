@@ -43,7 +43,7 @@
         },
         {
             "questionNumber": "5",
-            "date": "2017-12-22",
+            "date": "2018-4-7",
             "question": "Which of the following items would not come under Configuration Management?",
             "option1": "operating systems",
             "option2": "test documentation",
@@ -53,7 +53,7 @@
         },
         {
             "questionNumber": "6",
-            "date": "2017-12-26",
+            "date": "2018-4-8",
             "question": "Indicate the noise whose source is in a category different from that",
             "option1": "Solar noise",
             "option2": "Cosmic noise",
