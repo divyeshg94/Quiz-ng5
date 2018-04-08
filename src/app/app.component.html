@@ -61,19 +61,17 @@
       <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option3" [hidden]="!previousQuestionData.option3" disabled /> {{ previousQuestionData.option3 }}<br />
       <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option4" [hidden]="!previousQuestionData.option4" disabled /> {{ previousQuestionData.option4 }}<br />
     </form>
-    <p [hidden]="!previousQuestionData.Explanation">Explanation</p>
-    <p>{{previousQuestionData.Explanation}}</p>
-
+    <p [hidden]="!previousQuestionData.explanation">Explanation: <span>{{previousQuestionData.explanation}}</span></p>
   </div>
 </div><br><br>
 
-<div class="Container color-dark">
+<div class="container color-dark">
   <div class="col">
     <p>Previous Question Participation</p>
   </div>
-  <!-- <div class='col'>
-      <p>Star Of Month: </p>
-  </div> -->
+  <div class='col' [hidden]="!questionData.isLastDay">
+      <p>Star Of Month</p>
+  </div>
 </div>
 
 <div class='container color-light'>
@@ -90,16 +88,14 @@
     </ul>
   </div>
 
-  <!-- <div class="col">
-      <p>
-          Star of Month :
-          <span>{{starOfMonth.associate}}</span>
-      </p>
-      <p>
-        Correct Answer Count:
-        <span>{{starOfMonth.count}}</span>
-      </p>
-    </div> -->
+  <div class="col" [hidden]="!questionData.isLastDay">
+      <p>Star of Month: </p>
+          <ul>
+            <li *ngFor="let star of starOfMonth">
+                {{starOfMonth.associate}} Count: {{starOfMonth.count}}
+            </li>
+          </ul>
+    </div>
 </div><br><br>
 
 <style>

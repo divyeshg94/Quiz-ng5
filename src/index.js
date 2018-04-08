@@ -88,8 +88,11 @@ server.get('/starOfMonth', function (req, res) {
     var year = currentDate.getFullYear()
     var startDate = year + '-' + month + '-01';
     var endDate = year + '-' + month + '-31';
-    var request = new sql.Request();
+    console.log(startDate);
+    console.log(endDate);
 
+    var request = new sql.Request();
+    console.log("SELECT associate, COUNT(associate) as count FROM Quiz where isAnswerRight = 'true' and qDate >= '" + startDate +"' and qDate <= '"+endDate+"' GROUP BY associate HAVING COUNT (associate)=( SELECT MAX(mycount) FROM ( SELECT associate, COUNT(associate) as mycount FROM [Quiz] where isAnswerRight = 'true' and qDate >= '"+startDate+"' and qDate <= '"+endDate+"' GROUP BY associate) as t )");
     request.query("SELECT associate, COUNT(associate) as count FROM Quiz where isAnswerRight = 'true' and qDate >= '" + startDate +"' and qDate <= '"+endDate+"' GROUP BY associate HAVING COUNT (associate)=( SELECT MAX(mycount) FROM ( SELECT associate, COUNT(associate) as mycount FROM [Quiz] where isAnswerRight = 'true' and qDate >= '"+startDate+"' and qDate <= '"+endDate+"' GROUP BY associate) as t )", function (err, arr) {
       if (err) console.log(err)
       console.log("star");
