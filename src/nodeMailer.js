@@ -10,7 +10,7 @@ var maillist = [
 ];
 
 //var job = new CronJob('00 00 11 * * 1-5', function() {
-  var job = new CronJob('* * * * *', function() {
+  var job = new CronJob('* * * * * 0-7', function() {
   fs.readFile(repo+'/json/questions.json', "utf8",
 		function (err, data) {		
 			if (err) {			
@@ -48,7 +48,7 @@ var maillist = [
 							  from: 'divyeshg@cloudassert.com',
 							  to: toMail,
 							  subject: 'CA Quiz - Question of the Day!!',
-							  html: 'Dear Team,</br> </br> </br> Please find the Question of the Day in the below link </br> <a href="http://localhost:4200/LeaFQuiz.html?user='+toMail+'">Click Here</a></br></br> </br>  Regards,</br></br> CloudAssert Team'
+							  html: 'Dear Team,</br> </br> </br> Please find the Question of the Day in the below link </br> <a href="http://localhost:4200?user='+toMail+'">Click Here</a></br></br> </br>  Regards,</br></br> CloudAssert Team'
              }); 
              console.log('mailedCount '+ mailedCount);
              mailedCount = mailedCount + 1;

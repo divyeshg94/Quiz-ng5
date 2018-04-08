@@ -4,7 +4,7 @@
 <script src='3rdParty/iscroll-master/build/iscroll.js'></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <img class="d-none d-md-block d-print-none" id="logo" src="assets/LeaF.png">  -->
-<h3 [hidden]="!user">Welcome {{user}}!!</h3>
+<h3 [hidden]="!user">Welcome {{userInfo.FirstName}} {{userInfo.LastName}}!!</h3>
 <h3 [hidden]="user">Welcome!! <span style="color:red;">Sorry you are not authenticated. Please use the link got in ur Email</span>></h3>
 <!-- <div class='container-fluid' > -->
 <div class="Container color-dark">
@@ -71,20 +71,35 @@
   <div class="col">
     <p>Previous Question Participation</p>
   </div>
+  <!-- <div class='col'>
+      <p>Star Of Month: </p>
+  </div> -->
 </div>
+
 <div class='container color-light'>
   <div class="col">
+    <p>
+        Total no. of people participated last Day :
+        <span>{{prevQuestionParticipationcount}}</span>
+      </p>
     <p class='headerParagraph'>Correct answer was given by <span [hidden]="prevAnswerData" style="color:red">None :(</span></p>
     <ul>
       <li *ngFor="let participant of prevAnswerData">
         {{participant.FirstName}} {{participant.LastName}}
       </li>
     </ul>
-    <p>
-      Total no. of people participated last Day :
-      <span>{{prevQuestionParticipationcount}}</span>
-    </p>
   </div>
+
+  <!-- <div class="col">
+      <p>
+          Star of Month :
+          <span>{{starOfMonth.associate}}</span>
+      </p>
+      <p>
+        Correct Answer Count:
+        <span>{{starOfMonth.count}}</span>
+      </p>
+    </div> -->
 </div><br><br>
 
 <style>

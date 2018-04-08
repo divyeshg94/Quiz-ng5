@@ -50,8 +50,8 @@ server.put('/submitAnswer', function (req, res) {
   qDate = year + '-' + month + '-' + day;
   console.log(qDate);
   console.log(req.body.user);
-  console.log("select * from Quiz where qDate = '" + qDate + "' and associate = '" + req.body.user + "'");
-  request.query("select * from Quiz where qDate = '" + qDate + "' and associate = '" + req.body.user + "'", function (err, arr) {
+  console.log("select * from Quiz where qDate = '" + qDate + "' and associate = " + req.body.user + "");
+  request.query("select * from Quiz where qDate = '" + qDate + "' and associate = " + req.body.user ,function (err, arr) {
     if (err) {
       console.log(err);
       return;
@@ -65,7 +65,7 @@ server.put('/submitAnswer', function (req, res) {
     else {
       console.log("Script 2");
       isAlreadyAnswered = false;
-      request.query("INSERT INTO [dbo].[Quiz]([QuestionNo],[QDate],[Associate],[IsAnswerRight],[Answer]) VALUES ('" + req.body.questionNo + "','" + qDate + "','" + req.body.user + "','" + req.body.correct + "','" + req.body.answer + "')", function (err, recordset) {
+      request.query("INSERT INTO [dbo].[Quiz]([QuestionNo],[QDate],[Associate],[IsAnswerRight],[Answer]) VALUES ('" + req.body.questionNo + "','" + qDate + "'," + req.body.user + ",'" + req.body.correct + "','" + req.body.answer + "')", function (err, recordset) {
         if (err) console.log(err)
         isAlreadyAnswered = false;
         res.send({ 'isAlreadyAnswered': isAlreadyAnswered });
@@ -90,7 +90,7 @@ server.get('/starOfMonth', function (req, res) {
     var endDate = year + '-' + month + '-31';
     var request = new sql.Request();
 
-    request.query("Select FirstName,LastName from associates where EmailId in ( SELECT associates FROM LeafQuiz where isAnswerRight = 'true' GROUP BY associates HAVING COUNT (associates)=( SELECT MAX(mycount) FROM ( SELECT associates, COUNT(associates) as mycount FROM [ETP].[dbo].[LeaFQuiz] where isAnswerRight = 'true' and qDate >= '" + startDate + "' and qDate <= '" + endDate + "' GROUP BY associates) as t ) )", function (err, arr) {
+    request.query("SELECT associate, COUNT(associate) as count FROM Quiz where isAnswerRight = 'true' and qDate >= '" + startDate +"' and qDate <= '"+endDate+"' GROUP BY associate HAVING COUNT (associate)=( SELECT MAX(mycount) FROM ( SELECT associate, COUNT(associate) as mycount FROM [Quiz] where isAnswerRight = 'true' and qDate >= '"+startDate+"' and qDate <= '"+endDate+"' GROUP BY associate) as t )", function (err, arr) {
       if (err) console.log(err)
       console.log("star");
       console.log(arr);
@@ -223,7 +223,7 @@ server.get('/getUserName/:emailId', function (req, res) {
   try {
     console.log('req.params.emailId');
     console.log(req.params.emailId);
-    request.query("select * from associates where EmailId = '" + req.params.emailId + "'", function (err, obj) {
+    request.query("select * from associates where EmailId = " + req.params.emailId + "", function (err, obj) {
       if (err) console.log(err);
       console.log(obj);
       res.json({ data: obj })

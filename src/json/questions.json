@@ -59,7 +59,8 @@
             "option2": "Cosmic noise",
             "option3": "Atmospheric noise",
             "option4": "Galactic noise",
-            "sessionInfo": "Atmospheric noise"
+            "sessionInfo": "Atmospheric noise",
+			"isLastDay": true
         },
         {
             "questionNumber": "7",

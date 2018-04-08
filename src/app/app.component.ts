@@ -11,9 +11,10 @@ type Question = {
     option3: string,
     option4: string,
     sessionInfo: string,
-    info: string
+    info: string,
+    isLastDay: boolean
   },
-  PrevAnswerData: {
+  prevAnswerData: {
     FirstName: string,
     LastName: string
   },
@@ -38,8 +39,21 @@ type SubmitAnswer = {
   }
 }
 
-type UserInfo = {
+type StarOfMonth = {
+  associate: string,
+  count: number
+}
 
+type UserInfo = {
+  data:{
+    recordset: {
+      DOB: string,
+      EmailId: string,
+      FirstName: string,
+      IsActive: boolean,
+      LastName:string
+    }
+  }
 }
 
 type SubmitResponse = {
@@ -56,6 +70,7 @@ export class AppComponent implements OnInit {
   user: string;
   userInfo: any;
   questionData: any;
+  starOfMonth: any;
   previousQuestionData: any;
   prevQuestionParticipationcount: number;
   prevAnswerData: any;
@@ -72,7 +87,7 @@ export class AppComponent implements OnInit {
       console.log('/api/getUserName/'+this.user);
       this.http.get('/api/getUserName/'+this.user)
         .subscribe((response: UserInfo) => {
-            this.userInfo = response;
+            this.userInfo = response.data.recordset[0];
         },
         (err: any) => console.log(err),
         () => console.log("User Data Retrieved!!"));
@@ -97,10 +112,22 @@ export class AppComponent implements OnInit {
         console.log(response);
         this.previousQuestionData = response.prevData;
         this.prevQuestionParticipationcount = response.count;
-        this.prevAnswerData = response.PrevAnswerData;
+        this.prevAnswerData = response.prevAnswerData;
+        if(this.questionData.isLastDay){
+          this.getStarOfMonth();
+        }
       },
       (err: any) => console.log(err),
       () => console.log('Question Retrieved Success!!'));
+  }
+
+  getStarOfMonth() {
+    this.http.get('/api/starOfMonth')
+      .subscribe((response: StarOfMonth) => {
+        this.starOfMonth = response;
+      },
+      (err: any) => console.log(err),
+      () => console.log('Star of Month retrieved Success!!'));
   }
 
   submit() {
