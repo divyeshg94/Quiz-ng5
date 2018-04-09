@@ -1,25 +1,17 @@
-.color-light{
-    background: #57B3F1;
-}
-.color-dark{
-    background: #2885c4;
-}
-
-.container{
-    display: grid;
-    grid-template-columns: 50% auto;
+ul{
+    list-style-type: none;
+    margin:0 0 2em 0;
+    padding: 0;
 }
 
-.col{
-    padding: .4em 1.3em;
+ul li{
+    display: inline;
+    margin-right: 30px;
 }
-
-input.btn{
-    border:0;
-    display:block;
-    padding:1em 3em;
-    background: #A5F883;
-    color:#003A61;
-    margin-bottom: 1em;
-    cursor: pointer;
+ul li a{
+    font-size: 1.5em;
+}
+a{
+    color: #fff;
+    text-decoration: none;
 }

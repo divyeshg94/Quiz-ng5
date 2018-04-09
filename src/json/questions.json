@@ -129,7 +129,7 @@
         },
         {
             "questionNumber": "13",
-            "date": "2018-01-05",
+            "date": "2018-4-9",
             "question": "Pick the best statement for the below program snippet:</br>struct {int a[2];} </br>arr[] = {1,2};",
             "option1": "No compile error and it’ll create array arr of 2 elements. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[1].a[0] would be 2.",
             "option2": "No compile error and it’ll create array arr of 2 elements. Each of the element of arr contain a struct field of int array of 2 elements. arr[0]. a[0] would be 1 and arr[0].a[1] would be 2. The second element arr[1] would be ZERO i.e. arr[1].a[0] and arr[1].a[1] would be 0.",
@@ -171,7 +171,7 @@
         },
         {
             "questionNumber": "17",
-            "date": "2018-01-11",
+            "date": "2018-4-10",
             "question": "Which of the following is used to switch heavy loads?",
             "option1": "FET",
             "option2": "transistor",

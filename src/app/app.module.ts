@@ -6,11 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { Quiz2Component } from './quiz2/quiz2.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    QuizComponent,
+    Quiz2Component,
   ],
   imports: [
     BrowserModule,

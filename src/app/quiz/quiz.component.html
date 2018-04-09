@@ -1,0 +1,108 @@
+<script src='3rdParty/jquery/jquery-2.1.4.min.js'></script>
+<script src='3rdParty/bootstrap/js/popper.min.js'></script>
+<script src='3rdParty/bootstrap/js/bootstrap.min.js'></script>
+<script src='3rdParty/iscroll-master/build/iscroll.js'></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <img class="d-none d-md-block d-print-none" id="logo" src="assets/LeaF.png">  -->
+<h3 [hidden]="!user">Welcome {{userInfo.FirstName}} {{userInfo.LastName}}!!</h3>
+<h3 [hidden]="user">Welcome!! <span style="color:red;">Sorry you are not authenticated. Please use the link got in ur Email</span>></h3>
+<!-- <div class='container-fluid' > -->
+<div class="Container color-dark">
+  <div class="col">
+    <p>Info For the day</p>
+  </div>
+</div>
+<div class='container color-light'>
+  <div class="col">
+    <p [hidden]="!questionData.info">{{questionData.info}}</p>
+    <p [hidden]="questionData.info" style="color:red;">No info for the day. Please provide your input for upcoming days!!</p>
+  </div>
+</div><br><br>
+
+<div class='container color-dark'>
+  <div class='col'>
+    <p> Today's Question: </p>
+  </div>
+  <div class='col'>
+    <p>Previous Question: </p>
+  </div>
+</div>
+
+<div class='container color-light'>
+  <div class='col'>
+    <span style="font-size:18px;color:red">{{ generalMsg }}</span>
+    <p> Please find the question for the Day</p>
+    <span>{{ questionData.question }}</span>
+    <form>
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option1" [hidden]="!questionData.option1" /> {{ questionData.option1 }}<br />
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option2" [hidden]="!questionData.option2" /> {{ questionData.option2 }}<br />
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option3" [hidden]="!questionData.option3" /> {{ questionData.option3 }}<br />
+      <input type="radio" name="options" [(ngModel)]="selectedOption" [value]="questionData.option4" [hidden]="!questionData.option4" /> {{ questionData.option4 }}<br />
+      <div style="padding:20px;" [hidden]='!user'>
+        <input type="submit" class="btn" value="Submit" (click)="submit()">
+      </div>
+    </form>
+
+    <!--<div class='starOfMonthMain' >
+        <div class='starDiv' id='starIcon'></div>
+        <div class='headerParagraph starDiv' style='display: inline-block;'>Star of the Month is</div>
+        <div id='starOfMonthDiv'>
+          <ol class="list-group" id='starOfMonthList'></ol>
+        </div>
+    </div>-->
+  </div>
+
+  <div class='col'>
+    <p>Previous Day's Question</p>
+    <span>{{ previousQuestionData.question }}</span>
+    <form>
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option1" [hidden]="!previousQuestionData.option1" disabled /> {{ previousQuestionData.option1 }}<br />
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option2" [hidden]="!previousQuestionData.option2" disabled /> {{ previousQuestionData.option2 }}<br />
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option3" [hidden]="!previousQuestionData.option3" disabled /> {{ previousQuestionData.option3 }}<br />
+      <input type="radio" name="options" [(ngModel)]="previousQuestionData.sessionInfo" [value]="previousQuestionData.option4" [hidden]="!previousQuestionData.option4" disabled /> {{ previousQuestionData.option4 }}<br />
+    </form>
+    <p [hidden]="!previousQuestionData.explanation">Explanation: <span>{{previousQuestionData.explanation}}</span></p>
+  </div>
+</div><br><br>
+
+<div class="container color-dark">
+  <div class="col">
+    <p>Previous Question Participation</p>
+  </div>
+  <div class='col' [hidden]="!questionData.isLastDay">
+      <p>Star Of Month</p>
+  </div>
+</div>
+
+<div class='container color-light'>
+  <div class="col">
+    <p>
+        Total no. of people participated last Day :
+        <span>{{prevQuestionParticipationcount}}</span>
+      </p>
+    <p class='headerParagraph'>Correct answer was given by <span [hidden]="prevAnswerData" style="color:red">None :(</span></p>
+    <ul>
+      <li *ngFor="let participant of prevAnswerData">
+        {{participant.FirstName}} {{participant.LastName}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="col" [hidden]="!questionData.isLastDay">
+      <p>Star of Month: </p>
+          <ul>
+            <li *ngFor="let star of starOfMonth">
+                {{starOfMonth.associate}} Count: {{starOfMonth.count}}
+            </li>
+          </ul>
+    </div>
+</div><br><br>
+
+<style>
+  p{
+    padding: 5px;
+  }
+  form{
+    padding-top:5px;
+  }
+</style>
