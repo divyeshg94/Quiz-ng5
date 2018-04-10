@@ -1,0 +1,64 @@
+[
+        {
+            "questionNumber": "1",
+            "date": "2018-3-14",
+            "question": "During thinking, how much percentage of our brains do we use?",
+            "option1": "71%",
+            "option2": "35%",
+            "option3": "58%",
+            "option4": "40%",
+            "sessionInfo": "35%"
+        },
+		{
+            "questionNumber": "2",
+            "date": "2018-3-15",
+            "question": "What country was paper invented in?",
+            "option1": "China",
+            "option2": "America",
+            "option3": "England",
+            "option4": "Japan",
+            "sessionInfo": "China"
+        },
+		{
+            "questionNumber": "3",
+            "date": "2018-3-19",
+			"question": "How many minutes a day does the average office worker spend looking for lost files and other items?",
+            "option1": "20 minutes",
+            "option2": "15 minutes",
+            "option3": "50 minutes",
+            "option4": "35 minutes",
+            "sessionInfo": "50 minutes"
+        },
+        {
+            "questionNumber": "4",
+            "date": "2018-3-21",
+            "question": "What percentage of workers believe having access to social media platforms helps them to be more productive?",
+            "option1": "20%",
+            "option2": "39%",
+            "option3": "65%",
+            "option4": "53%",
+            "sessionInfo": "39%",
+            "info": "Every drop of water makes a mighty ocean!!" 
+        },
+        {
+            "questionNumber": "5",
+            "date": "2018-4-7",
+            "question": "Which company allows colleagues to bring their dog into the office?",
+            "option1": "Amazon",
+            "option2": "Ikea",
+            "option3": "Microsoft",
+            "option4": "Samsung",
+            "sessionInfo": "Amazon"
+        },
+        {
+            "questionNumber": "6",
+            "date": "2018-4-8",
+            "question": "How often is the average manager interrupted?",
+            "option1": "every 20 minutes",
+            "option2": "every 8 minutes",
+            "option3": "every 17 minutes",
+            "option4": "every 40 minutes",
+            "sessionInfo": "every 8 minutes",
+			"isLastDay": true
+        }
+	]
