@@ -10,7 +10,7 @@ var router = express.Router();
 var server = {};
 var qDate;
 var apiSimulatorPort = 3100;
-var repo = 'E:/TFS/Quiz-ng5/Quiz-ng5/src';
+var repo = 'D:/Quiz-ng5/src';
 var apiSimulatorHostName = 'LeaF';
 var os = require('os');
 var sql = require("mssql");
@@ -30,9 +30,9 @@ server.listen(apiSimulatorPort, function () {
 
 var config = {
   server: 'DIVYESH',
-  database: 'Quiz',
+  database: 'DailyQuiz',
   user: 'sa',
-  password: 'Dhakshu020415',
+  password: 'pass@word1',
   port: 1433
 };
 

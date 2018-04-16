@@ -94,7 +94,7 @@
         },
         {
             "questionNumber": "10",
-            "date": "2018-01-02",
+            "date": "2018-4-13",
             "question": "Which of the followings is correct for a function definition along with storage-class specifier in C language?",
             "option1": "int fun(auto int arg)",
             "option2": "int fun(static int arg)",
@@ -118,7 +118,7 @@
         },
         {
             "questionNumber": "12",
-            "date": "2018-01-04",
+            "date": "2018-4-16",
             "question": "Suppose that in a C program snippet, followings statements are used.<br>sizeof(int);<br>sizeof(int*);sizeof(int**);<br>Assuming size of pointer is 4 bytes and size of int is also 4 bytes, pick the most correct answer from the given options.",
             "option1": "Only sizeof(int); would compile successfully and it would return size as 4.",
             "option2": "sizeof(int); sizeof(int*); sizeof(int**); would compile successfully and size of each would be same i.e. 4",

@@ -17,6 +17,7 @@ body{
     position: absolute;
     right: 0px;
     top: 24px;
+    display:inline-block;
 }
 
 h3{
